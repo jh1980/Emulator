@@ -12,6 +12,8 @@ import interfaces.IInstruction;
 
 import java.util.List;
 
+import utility.InstructionParser;
+
 public class Simulation extends AbstractModel {
 	private ProcessorConfiguration _processorConfiguration;
 	private IProcessor _processor;
@@ -21,6 +23,7 @@ public class Simulation extends AbstractModel {
 	public InstructionParser _unnamed_InstructionParser_;
 	public ProcessorConfiguration _unnamed_ProcessorConfiguration_;
 	public BenchmarkResult _unnamed_BenchmarkResult_;
+	public Memory internalMemory;
 	
 	public Simulation(ProcessorConfiguration config, List<IInstruction> program)
 	{
