@@ -8,5 +8,12 @@ package interfaces;
 
 public interface IIssueUnit extends ICoreComponent {
 
-	public void IssueInstructions();
+
+	public boolean addToPreIssue(IInstruction instruction);
+	public void IssueInstructions(IInstruction instruction);
+	public IMemoryAccess GetFirstAvailableMEM();
+	public IALU GetFirstAvailableALU();
+	public int getNumInPreIssue();
+
+
 }

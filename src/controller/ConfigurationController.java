@@ -7,11 +7,12 @@
 
 package controller;
 
+import interfaces.IModel;
+
 import java.io.IOException;
 
-import utility.Serializer;
 import model.ProcessorConfiguration;
-import interfaces.IModel;
+import utility.Serializer;
 
 public class ConfigurationController extends AbstractController {
 
@@ -19,6 +20,12 @@ public class ConfigurationController extends AbstractController {
 	
 	public ConfigurationController() {
 		super(model);
+	}
+	
+	public ConfigurationController(ProcessorConfiguration config)
+	{
+		super(config);
+		model = config;
 	}
 
 	@Override
@@ -31,7 +38,7 @@ public class ConfigurationController extends AbstractController {
 	 */
 	public void SaveConfig()
 	{
-		String pathToSave = ".\\configs\\" + model.GetName() + ".config";
+		String pathToSave = model.GetName() + ".config";
 		try {
 			Serializer.serializeConfigTo(pathToSave, model);
 		} catch (IOException e) {
@@ -46,6 +53,7 @@ public class ConfigurationController extends AbstractController {
 	 */
 	public void SelectNewConfig(String path) {
 		try {
+			
 			model = Serializer.deserializeConfigFrom(path);
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -104,5 +112,10 @@ public class ConfigurationController extends AbstractController {
 
 	public Integer getCycleCountFor(String opName) {
 		return (Integer)model.GetCycleMap().get(opName);
+	}
+	
+	public ProcessorConfiguration getConfig()
+	{
+		return model;
 	}
 }

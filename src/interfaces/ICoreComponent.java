@@ -5,29 +5,22 @@
 
 package interfaces;
 
-import java.awt.Event;
 import java.util.List;
 
-public interface ICoreComponent {
+public interface ICoreComponent extends IModel{
 /**
  * Gets the status of the component.
  * @return The status of the component.
  */
-	public String GetStatus();
+	public ProcStatus GetStatus();
 /**
- * Defines the number of cycles this component takes to complete.
- * @param aIn_numToCycle The number of cycles this component takes to complete.
+ * Executes one cycle of the ICoreComponent.
  */
-	public void Cycle(int aIn_numToCycle);
+	public void Cycle();
+
 /**
  * A list of the current instructions.
  * @return A list of the current instructions.
  */
 	public List<IInstruction> CurrentInstructions();
-/**
- * Creates an Event when some component is changed to send to the listeners.
- * @return 
- * @see ModelListener
- */
-	public Event PropertyChanged(Object aIn_propertyName);
 }
